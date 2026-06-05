@@ -1,0 +1,65 @@
+CREATE DATABASE Company;
+
+USE Company;
+
+CREATE TABLE Employee (
+    E_id INT PRIMARY KEY,
+    E_name VARCHAR(50),
+    Age INT,
+    Salary DECIMAL(10,2)
+);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (1,'Alice Johnson',28,55000.00);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (2,'Bob Smith',35,72000.00);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (3,'Carol White',42,48000.00);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (4,'David Brown',30,61000.00);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (5,'Eva Green',25,43000.00);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (6,'Frank Lee',38,73000.00);
+
+INSERT INTO Employee (E_id,E_name,Age,Salary)
+VALUES (7,'Grace Kim',29,55000.00);
+
+-- Q2: Count Employees
+SELECT COUNT(E_name) AS Total_Employees
+FROM Employee;
+
+-- Q3: Maximum Age
+SELECT MAX(Age) AS Maximum_Age
+FROM Employee;
+
+-- Q4: Minimum Age
+SELECT MIN(Age) AS Minimum_Age
+FROM Employee;
+
+-- Q5: Salaries in Ascending Order
+SELECT E_id, E_name, Age, Salary
+FROM Employee
+ORDER BY Salary ASC;
+
+-- Q6 (Part A): Group Salary Summary
+SELECT Salary,
+       COUNT(E_id) AS No_of_Employees,
+       AVG(Age) AS Average_Age,
+       SUM(Salary) AS Total_Salary
+FROM Employee
+GROUP BY Salary
+ORDER BY Salary ASC;
+
+-- Q6 (Part B): Overall Aggregate Summary
+SELECT COUNT(E_id) AS Total_Employees,
+       SUM(Salary) AS Total_Salary,
+       AVG(Salary) AS Average_Salary,
+       MIN(Salary) AS Minimum_Salary,
+       MAX(Salary) AS Maximum_Salary
+FROM Employee;

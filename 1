@@ -1,0 +1,42 @@
+CREATE DATABASE company;
+
+USE company;
+
+CREATE TABLE Employee (
+    EMPNO INT,
+    ENAME VARCHAR(50),
+    JOB VARCHAR(50),
+    MANAGER_NO INT,
+    SAL DECIMAL(10,2),
+    COMMISSION DECIMAL(10,2)
+);
+
+CREATE USER 'user1'@'localhost' IDENTIFIED BY '1234';
+
+GRANT ALL PRIVILEGES ON company.* TO 'user1'@'localhost';
+
+FLUSH PRIVILEGES;
+
+START TRANSACTION;
+
+INSERT INTO Employee VALUES (1, 'Ali', 'Manager', 101, 50000, 5000);
+
+INSERT INTO Employee VALUES (2, 'Sara', 'Clerk', 102, 20000, 2000);
+
+INSERT INTO Employee VALUES (3, 'John', 'Analyst', 103, 40000, 4000);
+
+ROLLBACK;
+
+SELECT * FROM Employee;
+
+ALTER TABLE Employee
+ADD PRIMARY KEY (EMPNO);
+
+ALTER TABLE Employee
+MODIFY ENAME VARCHAR(50) NOT NULL;
+
+INSERT INTO Employee VALUES (4, NULL, 'Developer', 104, 30000, 3000);
+
+INSERT INTO Employee VALUES (4, 'Aman', 'Developer', 104, 30000, 3000);
+
+SELECT * FROM Employee;
